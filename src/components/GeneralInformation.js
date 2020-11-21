@@ -5,7 +5,7 @@ const GeneralInformation = (props) => {
   const { editName, editEmail, editPhone } = props;
 
   return (
-    <form>
+    <fieldset>
       <IndividualField field="Name" type="text" editField={editName} />
       <IndividualField field="Email" type="email" editField={editEmail} />
       <IndividualField
@@ -13,7 +13,7 @@ const GeneralInformation = (props) => {
         type="number"
         editField={editPhone}
       />
-    </form>
+    </fieldset>
   );
 };
 

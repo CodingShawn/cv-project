@@ -4,7 +4,7 @@ const EducationalInformation = (props) => {
   const { editSchool, editCourse, editGraduation } = props;
 
   return (
-    <form>
+    <fieldset>
       <IndividualField field="School" type="text" editField={editSchool} />
       <IndividualField
         field="Course of Study"
@@ -16,7 +16,7 @@ const EducationalInformation = (props) => {
         type="date"
         editField={editGraduation}
       />
-    </form>
+    </fieldset>
   );
 };
 
