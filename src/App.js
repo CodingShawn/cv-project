@@ -2,6 +2,7 @@ import { Component } from "react";
 import GeneralInformation from "./components/GeneralInformation";
 import EducationalInformation from "./components/EducationalInformation";
 import CompanyInformation from "./components/CompanyInformation";
+import FinalCV from "./components/FinalCV"
 
 class App extends Component {
   constructor() {
@@ -19,6 +20,7 @@ class App extends Component {
       mainTasks: "",
       dateStarted: "",
       dateTill: "",
+      showCV: false,
     };
 
     this.editName = this.editName.bind(this);
@@ -27,11 +29,11 @@ class App extends Component {
     this.editSchool = this.editSchool.bind(this);
     this.editCourse = this.editCourse.bind(this);
     this.editGraduation = this.editGraduation.bind(this);
-    this.editCompany = this.editCompany.bind(this)
-    this.editPosition = this.editPosition.bind(this)
-    this.editMainTasks = this.editMainTasks.bind(this)
-    this.editDateStarted = this.editDateStarted.bind(this)
-    this.editDateTill = this.editDateTill.bind(this)
+    this.editCompany = this.editCompany.bind(this);
+    this.editPosition = this.editPosition.bind(this);
+    this.editMainTasks = this.editMainTasks.bind(this);
+    this.editDateStarted = this.editDateStarted.bind(this);
+    this.editDateTill = this.editDateTill.bind(this);
   }
 
   editName = (e) => {
@@ -98,35 +100,44 @@ class App extends Component {
     this.setState({
       dateTill: e.target.value,
     });
-    console.log(this.state)
   };
 
-
- 
+  toggleShowCV = () => {
+    this.setState({
+      showCV: !this.state.showCV,
+    }, console.log(this.state.showCV));
+  };
 
   render() {
     return (
       <div className="App">
-        <div className="col-6 mx-auto mt-5">
-          <form>
-            <GeneralInformation
-              editName={this.editName}
-              editEmail={this.editEmail}
-              editPhone={this.editPhone}
-            />
-            <EducationalInformation
-              editSchool={this.editSchool}
-              editCourse={this.editCourse}
-              editGraduation={this.editGraduation}
-            />
-            <CompanyInformation
-              editCompany={this.editCompany}
-              editPosition={this.editPosition}
-              editMainTasks={this.editMainTasks}
-              editDateStarted={this.editDateStarted}
-              editDateTill={this.editDateTill}
-            />
-          </form>
+        <div className="col-6 mx-auto mt-5 mb-5">
+          {!this.state.showCV ? (
+            <form>
+              <GeneralInformation
+                editName={this.editName}
+                editEmail={this.editEmail}
+                editPhone={this.editPhone}
+              />
+              <EducationalInformation
+                editSchool={this.editSchool}
+                editCourse={this.editCourse}
+                editGraduation={this.editGraduation}
+              />
+              <CompanyInformation
+                editCompany={this.editCompany}
+                editPosition={this.editPosition}
+                editMainTasks={this.editMainTasks}
+                editDateStarted={this.editDateStarted}
+                editDateTill={this.editDateTill}
+              />
+            </form>
+          ) : (
+            <FinalCV {...this.state}/>
+          )}
+          <button onClick={this.toggleShowCV} className="btn btn-primary">
+            {!this.state.showCV ? "Submit CV" : "Edit CV"}
+          </button>
         </div>
       </div>
     );
