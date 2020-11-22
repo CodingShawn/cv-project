@@ -2,7 +2,7 @@ import { Component } from "react";
 import GeneralInformation from "./components/GeneralInformation";
 import EducationalInformation from "./components/EducationalInformation";
 import CompanyInformation from "./components/CompanyInformation";
-import FinalCV from "./components/FinalCV"
+import FinalCV from "./components/FinalCV";
 
 class App extends Component {
   constructor() {
@@ -103,26 +103,31 @@ class App extends Component {
   };
 
   toggleShowCV = () => {
-    this.setState({
-      showCV: !this.state.showCV,
-    }, console.log(this.state.showCV));
+    this.setState(
+      {
+        showCV: !this.state.showCV,
+      },
+      console.log(this.state.showCV)
+    );
   };
 
   render() {
     return (
       <div className="App">
-        <div className="col-6 mx-auto mt-5 mb-5">
-          {!this.state.showCV ? (
+        {!this.state.showCV ? (
+          <div className="col-6 mx-auto mt-5 mb-5">
             <form>
               <GeneralInformation
                 editName={this.editName}
                 editEmail={this.editEmail}
                 editPhone={this.editPhone}
+                {...this.state}
               />
               <EducationalInformation
                 editSchool={this.editSchool}
                 editCourse={this.editCourse}
                 editGraduation={this.editGraduation}
+                {...this.state}
               />
               <CompanyInformation
                 editCompany={this.editCompany}
@@ -130,15 +135,21 @@ class App extends Component {
                 editMainTasks={this.editMainTasks}
                 editDateStarted={this.editDateStarted}
                 editDateTill={this.editDateTill}
+                {...this.state}
               />
+              <button onClick={this.toggleShowCV} className="btn btn-primary">
+                Submit CV
+              </button>
             </form>
-          ) : (
-            <FinalCV {...this.state}/>
-          )}
-          <button onClick={this.toggleShowCV} className="btn btn-primary">
-            {!this.state.showCV ? "Submit CV" : "Edit CV"}
-          </button>
-        </div>
+          </div>
+        ) : (
+          <div className="col-10 mx-auto mt-5">
+            <FinalCV {...this.state} />
+            <button onClick={this.toggleShowCV} className="btn btn-primary">
+              Edit CV
+            </button>
+          </div>
+        )}
       </div>
     );
   }
