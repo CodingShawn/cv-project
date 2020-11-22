@@ -6,12 +6,23 @@ const GeneralInformation = (props) => {
 
   return (
     <fieldset>
-      <IndividualField field="Name" type="text" editField={editName} />
-      <IndividualField field="Email" type="email" editField={editEmail} />
+      <IndividualField
+        field="Name"
+        type="text"
+        editField={editName}
+        value={props.name}
+      />
+      <IndividualField
+        field="Email"
+        type="email"
+        editField={editEmail}
+        value={props.email}
+      />
       <IndividualField
         field="Phone Number"
         type="number"
         editField={editPhone}
+        value={props.phone}
       />
     </fieldset>
   );

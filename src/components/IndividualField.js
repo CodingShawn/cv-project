@@ -1,5 +1,5 @@
 const IndividualField = (props) => {
-  const { field, type, editField } = props;
+  const { field, type, editField, value } = props;
 
   function joinString(string) {
       let newString = string
@@ -19,6 +19,7 @@ const IndividualField = (props) => {
         id={concatField + "Input"}
         className="form-control"
         onChange={editField}
+        value={value}
       />
     </div>
   );
